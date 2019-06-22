@@ -16,7 +16,7 @@ gcloud auth application-default login
 
 - [x] Create BigQuery dataset
 - [x] Create Storage bucket 
-- [] Create Pub/Sub topic/subscription
+- [x] Create Pub/Sub topic/subscription
 - [] Create Dataflow job
 
 ## Pre-Usage
