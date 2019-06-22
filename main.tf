@@ -44,3 +44,11 @@ resource "google_pubsub_subscription" "example" {
     ttl = "300000.5s"
   }
 }
+
+# TODO: Dataflow config must have a job template filepath,
+# which means it only supports custom job.
+# resource "google_dataflow_job" "big_data_job" {
+#   name              = "dataflow-job"
+#   template_gcs_path = "gs://my-bucket/templates/template_file"
+#   temp_gcs_location = "gs://image-store-bucket-example"
+# }

@@ -17,7 +17,14 @@ gcloud auth application-default login
 - [x] Create BigQuery dataset
 - [x] Create Storage bucket 
 - [x] Create Pub/Sub topic/subscription
-- [] Create Dataflow job
+- [/] Create Dataflow job
+
+(Optional)
+
+- [ ] GAE
+- [ ] Datastore
+- [ ] Cloud Tasks
+- [ ] Cloud Scheduler
 
 ## Pre-Usage
 
@@ -48,7 +55,7 @@ Enable APIs
 gcloud services enable bigquery-json.googleapis.com # BigQuery
 gcloud services enable storage-component.googleapis.com # Storage
 gcloud services enable pubsub.googleapis.com # PubSub
-# gcloud services enable 
+gcloud services enable dataflow.googleapis.com # Dataflow
 ```
 
 ## Usage
