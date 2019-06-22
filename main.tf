@@ -4,21 +4,24 @@ provider "google" {
   zone    = "us-central1-c"
 }
 
-resource "google_compute_instance" "vm_instance" {
-  name         = "terraform-instance"
-  machine_type = "f1-micro"
+resource "google_bigquery_dataset" "default" {
+  dataset_id                  = "foo"
+  friendly_name               = "test"
+  description                 = "This is a test description"
+  location                    = "EU"
+  default_table_expiration_ms = 3600000
 
-  boot_disk {
-    initialize_params {
-      image = "debian-cloud/debian-9"
-    }
-  }
-
-  network_interface {
-    # A default network is created for all GCP projects
-    network = "default"
-    access_config {
-    }
+  labels = {
+    env = "default"
   }
 }
 
+resource "google_storage_bucket" "image-store" {
+  name     = "image-store-bucket-example"
+  location = "EU"
+
+  website {
+    main_page_suffix = "index.html"
+    not_found_page   = "404.html"
+  }
+}
