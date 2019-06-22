@@ -19,6 +19,38 @@ gcloud auth application-default login
 - [] Create Pub/Sub topic/subscription
 - [] Create Dataflow job
 
+## Pre-Usage
+
+List available services
+
+```bash
+$ gcloud services list
+NAME                              TITLE
+bigquery-json.googleapis.com      BigQuery API
+cloudapis.googleapis.com          Google Cloud APIs
+clouddebugger.googleapis.com      Stackdriver Debugger API
+cloudtrace.googleapis.com         Stackdriver Trace API
+compute.googleapis.com            Compute Engine API
+datastore.googleapis.com          Cloud Datastore API
+logging.googleapis.com            Stackdriver Logging API
+monitoring.googleapis.com         Stackdriver Monitoring API
+oslogin.googleapis.com            Cloud OS Login API
+servicemanagement.googleapis.com  Service Management API
+serviceusage.googleapis.com       Service Usage API
+sql-component.googleapis.com      Cloud SQL
+storage-api.googleapis.com        Google Cloud Storage JSON API
+storage-component.googleapis.com  Cloud Storage
+```
+
+Enable APIs
+
+```bash
+gcloud services enable bigquery-json.googleapis.com # BigQuery
+gcloud services enable storage-component.googleapis.com # Storage
+gcloud services enable pubsub.googleapis.com # PubSub
+# gcloud services enable 
+```
+
 ## Usage
 
 Initialize
@@ -34,23 +66,6 @@ terraform apply
 ```
 
 ## Compute Engine Specific issue
-
-(Optional) Enable Compute Engine API
-
-```bash
-gcloud services enable compute.googleapis.com
-```
-
-Otherwise, you will get a following error:
-
-```text
-google_compute_instance.vm_instance: Creating...
-
-Error: Error loading zone 'us-central1-c': googleapi: Error 403: Access Not Configured. Compute Engine API has not been used in project xxxxxxxx before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=xxxxxxxx then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry., accessNotConfigured
-
-  on main.tf line 7, in resource "google_compute_instance" "vm_instance":
-   7: resource "google_compute_instance" "vm_instance" {
-```
 
 TODO: something wrong with 'compute.zones.get' permission
 
