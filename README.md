@@ -14,6 +14,12 @@ gcloud auth application-default login
 
 ## TODO
 
+Must:
+
+- [ ] Setup credentials (service account)
+
+Services:
+
 - [x] Create BigQuery dataset
 - [x] Create Storage bucket 
 - [x] Create Pub/Sub topic/subscription
@@ -82,5 +88,6 @@ TODO: something wrong with 'compute.zones.get' permission
 - [Getting Started with the Google Provider](https://www.terraform.io/docs/providers/google/getting_started.html)
 - [Google Provider Configuration Reference](https://www.terraform.io/docs/providers/google/provider_reference.html)
 - [Managing GCP projects with Terraform](https://cloud.google.com/community/tutorials/managing-gcp-projects-with-terraform)
+- [Google Cloud and HashiCorp](https://github.com/terraform-google-modules)
 - [How Can One Use gcloud To Enable APIs](https://stackoverflow.com/questions/43101353/how-can-one-use-gcloud-to-enable-apis)
 - [Google Compute Engine: Required 'compute.zones.get' permission error](https://stackoverflow.com/questions/48232189/google-compute-engine-required-compute-zones-get-permission-error)

@@ -45,6 +45,13 @@ resource "google_pubsub_subscription" "example" {
   }
 }
 
+module "datastore" {
+  source      = "terraform-google-modules/cloud-datastore/google"
+  credentials = "sa-key.json"
+  project     = "terraform-getting-started"
+  indexes     = "${file("index.yaml")}"
+}
+
 # # TODO: the project should have an App Engine application
 # # for setting up a scheduler job
 # resource "google_cloud_scheduler_job" "job" {
