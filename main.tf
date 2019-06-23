@@ -45,6 +45,19 @@ resource "google_pubsub_subscription" "example" {
   }
 }
 
+# # TODO: the project should have an App Engine application
+# # for setting up a scheduler job
+# resource "google_cloud_scheduler_job" "job" {
+#   name        = "test-job"
+#   description = "test http job"
+#   schedule    = "*/8 * * * *"
+
+#   http_target {
+#     http_method = "POST"
+#     uri         = "https://example.com/ping"
+#   }
+# }
+
 # TODO: Dataflow config must have a job template filepath,
 # which means it only supports custom job.
 # resource "google_dataflow_job" "big_data_job" {

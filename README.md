@@ -24,7 +24,7 @@ gcloud auth application-default login
 - [ ] GAE
 - [ ] Datastore
 - [ ] Cloud Tasks
-- [ ] Cloud Scheduler
+- [x] Cloud Scheduler
 
 ## Pre-Usage
 
@@ -56,6 +56,7 @@ gcloud services enable bigquery-json.googleapis.com # BigQuery
 gcloud services enable storage-component.googleapis.com # Storage
 gcloud services enable pubsub.googleapis.com # PubSub
 gcloud services enable dataflow.googleapis.com # Dataflow
+gcloud services enable cloudscheduler.googleapis.com # Scheduler
 ```
 
 ## Usage
