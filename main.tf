@@ -1,56 +1,83 @@
+locals {
+  project               = "terraform-getting-started"
+  credentials_file_path = "${path.module}/sa-key.json"
+  region                = "us-central1"
+  zone                  = "us-central1-c"
+  location_id           = "us-central"
+}
+
 provider "google" {
-  project = "terraform-getting-started"
-  region  = "us-central1"
-  zone    = "us-central1-c"
+  project     = "${local.project}"
+  credentials = "${file(local.credentials_file_path)}"
+  region      = "${local.region}"
+  zone        = "${local.zone}"
 }
 
-resource "google_bigquery_dataset" "default" {
-  dataset_id                  = "foo"
-  friendly_name               = "test"
-  description                 = "This is a test description"
-  location                    = "EU"
-  default_table_expiration_ms = 3600000
 
-  labels = {
-    env = "default"
+resource "google_app_engine_application" "app" {
+  project     = "${local.project}"
+  location_id = "${local.location_id}"
+}
+
+resource "null_resource" "datastore-import" {
+  provisioner "local-exec" {
+    command = "gcloud config list"
   }
 }
 
-resource "google_storage_bucket" "image-store" {
-  name     = "image-store-bucket-example"
-  location = "EU"
+# resource "google_bigquery_dataset" "default" {
+#   dataset_id                  = "foo"
+#   friendly_name               = "test"
+#   description                 = "This is a test description"
+#   location                    = "EU"
+#   default_table_expiration_ms = 3600000
 
-  website {
-    main_page_suffix = "index.html"
-    not_found_page   = "404.html"
-  }
-}
+#   labels = {
+#     env = "default"
+#   }
+# }
 
-resource "google_pubsub_topic" "example" {
-  name = "example-topic"
-}
+# resource "google_storage_bucket" "image-store" {
+#   name     = "image-store-bucket-example"
+#   location = "EU"
 
-resource "google_pubsub_subscription" "example" {
-  name  = "example-subscription"
-  topic = "${google_pubsub_topic.example.name}"
+#   website {
+#     main_page_suffix = "index.html"
+#     not_found_page   = "404.html"
+#   }
+# }
 
-  # 20 minutes
-  message_retention_duration = "1200s"
-  retain_acked_messages      = true
+# resource "google_pubsub_topic" "example" {
+#   name = "example-topic"
+# }
 
-  ack_deadline_seconds = 20
+# resource "google_pubsub_subscription" "example" {
+#   name  = "example-subscription"
+#   topic = "${google_pubsub_topic.example.name}"
 
-  expiration_policy {
-    ttl = "300000.5s"
-  }
-}
+#   # 20 minutes
+#   message_retention_duration = "1200s"
+#   retain_acked_messages      = true
 
-module "datastore" {
-  source      = "terraform-google-modules/cloud-datastore/google"
-  credentials = "sa-key.json"
-  project     = "terraform-getting-started"
-  indexes     = "${file("index.yaml")}"
-}
+#   ack_deadline_seconds = 20
+
+#   expiration_policy {
+#     ttl = "300000.5s"
+#   }
+# }
+
+# resource "null_resource" "example2" {
+#   provisioner "local-exec" {
+#     command = "gcloud config list"
+#   }
+# }
+
+# module "datastore" {
+#   source      = "terraform-google-modules/cloud-datastore/google"
+#   credentials = "sa-key.json"
+#   project     = "terraform-getting-started"
+#   indexes     = "${file("yaml/index.yaml")}"
+# }
 
 # # TODO: the project should have an App Engine application
 # # for setting up a scheduler job

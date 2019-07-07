@@ -63,6 +63,8 @@ gcloud services enable storage-component.googleapis.com # Storage
 gcloud services enable pubsub.googleapis.com # PubSub
 gcloud services enable dataflow.googleapis.com # Dataflow
 gcloud services enable cloudscheduler.googleapis.com # Scheduler
+gcloud services enable datastore.googleapis.com # Datastore
+gcloud services enable appengine.googleapis.com # App Engine
 ```
 
 ## Usage
